@@ -1,0 +1,10 @@
+.table-responsive
+  %table.table-striped.table-hover.table.bordered
+    %thead
+      %tr
+        %th Proprietário
+    
+    %tbody
+      - @imoveis.each_with_index do |imovel, index|
+        %tr
+          %td= link_to 'Proprietário', proprietario_path(imovel.proprietario), class: 'btn btn-link'
