@@ -61,3 +61,4 @@ gem "haml-rails", "~> 2.0"
 gem 'devise'
 gem 'simple_form'
 gem 'cancancan'
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'

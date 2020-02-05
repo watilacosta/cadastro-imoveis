@@ -24,4 +24,6 @@ class Proprietario < ApplicationRecord
   validates :endereco, length: { maximum: 250 }
 
   has_many :imoveis
+
+  enum role: [:admin, :normal]
 end
