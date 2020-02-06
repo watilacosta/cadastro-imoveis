@@ -25,5 +25,5 @@ class Imovel < ApplicationRecord
   validates :endereco, length: { maximum: 250 }, presence: true
   validates :area_terreno, :area_construida, :area_total, :aliquota, 
             :valor_venal_terreno, :valor_venal_construcao, 
-            :valor_venal_total, :aliquota_aplicada, :valor_imposto, numericality: true
+            :valor_venal_total, :aliquota_aplicada, :valor_imposto, numericality: true, presence: true
 end

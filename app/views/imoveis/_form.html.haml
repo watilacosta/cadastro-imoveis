@@ -1,0 +1,36 @@
+= simple_form_for @imovel, remote: true do |f|
+  .form-row
+    .col
+      = f.association :proprietario, label_method: :nome, value_method: :id, include_blank: 'Selecione o Proprietário'
+  .form-group
+    = f.input :endereco, placeholder: 'Formato: Rua x, nº xxxxx', input_html: {id: 'end_imovel'}
+
+  .form-row
+    .col
+      = f.input :area_terreno, label: 'Área do Terreno', required: true, placeholder: 'm²', input_html: { step: 0.1 }
+    .col 
+      = f.input :area_construida, label: 'Área Construída', required: true, placeholder: 'm²', input_html: { step: 0.1 }
+    .col
+      = f.input :area_total, as: :hidden, input_html: { value: 0.0 }
+      %label.mt-4.ml-2{for: 'area_total'} Área Total:
+      %span#area_total.font-weight-bold 0
+
+  .form-row
+    .col
+      = f.input :aliquota, label: 'Alíquota', required: true, input_html: { value: 0.00 }, hint: 'Valor em %'
+    .col
+      = f.input :valor_venal_terreno, required: true, input_html: { value: 0.0 }, hint: 'Valor em R$'
+    .col 
+      = f.input :valor_venal_construcao, required: true, input_html: { value: 0.0 }, hint: 'Valor em R$'
+      
+  .form-group
+    = f.input :valor_venal_total, as: :hidden, input_html: { value: 0.0 }
+    %label.mt-4.ml-2{for: 'vlr_venal_total'} Valor Venal Total:
+    %span#vlr_venal_total.font-weight-bold 0
+
+  .form-row
+    .col
+      = f.input :aliquota_aplicada, required: true, input_html: { value: 0.00 }, hint: 'Valor em %'
+    .col
+      = f.input :valor_imposto, required: true, input_html: { value: 0.0 }, hint: 'Valor em R$'
+  

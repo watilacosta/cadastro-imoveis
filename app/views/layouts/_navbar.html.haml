@@ -11,4 +11,6 @@
             %span.sr-only (current)
 
 
-      = link_to 'Sair', destroy_proprietario_session_path, method: :delete, class: 'btn btn-outline-secondary btn-sm'
+      = link_to destroy_proprietario_session_path, method: :delete, class: 'btn btn-outline-secondary btn-sm', title: 'Sair' do
+        %i.fas.fa-sign-out-alt
+        Sair
