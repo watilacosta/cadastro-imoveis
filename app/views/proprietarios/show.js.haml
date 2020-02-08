@@ -1,0 +1,5 @@
+:plain
+  var modal = $("#modal-window")
+  modal.find(".modal-body").html("#{j (render file: 'proprietarios/show.html.haml')}");
+  modal.find('.modal-title').html("Detalhes do Proprietário");
+  modal.modal();

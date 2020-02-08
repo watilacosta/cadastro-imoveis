@@ -1,0 +1,27 @@
+.table-responsive
+  %table.table-striped.table-bordered.table-hover.table-sm.w-100
+    %caption Tabela de Proprietários
+    %thead
+      %tr.text-center
+        %th #
+        %th Nome
+        %th Endereço
+        %th 
+          %i.fas.fa-cogs{title: 'Edição'}
+    %tbody
+      - @proprietarios.each_with_index do |prop, index|
+        %tr.text-center.text-monospace
+          %td=index+1
+          %td=prop.nome
+          %td.small=prop.endereco
+          
+          %td
+            - if can? :manage, prop
+              = link_to edit_proprietario_path(prop), remote: true, class: 'btn btn-outline-dark btn-sm', title: 'Editar' do
+                %i.fas.fa-edit
+              = link_to proprietario_path(prop), method: :delete, data: {confirm: "Apagar Imóvel #{index + 1} ?"}, class: 'btn btn-outline-dark btn-sm mx-1', title: 'Apagar' do
+                %i.fas.fa-trash
+            - else 
+              %i.fas.fa-exclamation-circle{title: 'Não autorizado'}
+
+= paginate @proprietarios

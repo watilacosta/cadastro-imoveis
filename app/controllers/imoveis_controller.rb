@@ -1,11 +1,8 @@
 class ImoveisController < ApplicationController
-  before_action :set_imovel, only: [:show, :edit, :update, :destroy]
+  before_action :set_imovel, only: [:edit, :update, :destroy]
 
   def index
     @imoveis = Imovel.all.page params[:page]
-  end
-
-  def show
   end
 
   def new

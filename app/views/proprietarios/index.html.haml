@@ -1,0 +1,7 @@
+.card
+  .card-header.d-flex.justify-content-between.align-items-center
+    %h2 Proprietários
+
+  .card-body
+    - if @proprietarios.present?  
+      = render 'proprietarios/lista'

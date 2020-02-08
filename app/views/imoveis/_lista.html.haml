@@ -21,7 +21,7 @@
       - @imoveis.each_with_index do |imovel, index|
         %tr.text-center.text-monospace
           %td=index+1
-          %td.text-left= link_to "#{imovel.proprietario.nome}", proprietario_path(imovel.proprietario), class: 'text-decoration-none', title: 'Clique para ver o proprietário'
+          %td.text-left= link_to "#{imovel.proprietario.nome}", proprietario_path(imovel.proprietario), remote: true, class: 'text-decoration-none', title: 'Clique para ver o proprietário'
           %td.small=imovel.endereco.truncate(25)
           %td=imovel.area_terreno
           %td=imovel.area_construida

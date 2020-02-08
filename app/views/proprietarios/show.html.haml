@@ -1,0 +1,6 @@
+.media
+  %i.fas.fa-user.fa-7x.mr-3
+  .media-body
+    = "Tipo: #{ @proprietario.role.titleize }"
+    %h5.mt-0= @proprietario.nome
+    %p.text-muted= @proprietario.endereco
