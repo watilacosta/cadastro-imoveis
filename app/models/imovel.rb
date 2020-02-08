@@ -25,5 +25,19 @@ class Imovel < ApplicationRecord
   validates :endereco, length: { maximum: 250 }, presence: true
   validates :area_terreno, :area_construida, :area_total, :aliquota, 
             :valor_venal_terreno, :valor_venal_construcao, 
-            :valor_venal_total, :aliquota_aplicada, :valor_imposto, numericality: true, presence: true
+            :valor_venal_total, :aliquota_aplicada, :valor_imposto, presence: true
+  
+  before_validation :calc_area_total, :calc_valor_venal_total, :calc_imposto
+
+  def calc_area_total
+    self.area_total = self.area_terreno + self.area_construida if self.area_terreno.present? and self.area_construida.present?
+  end
+
+  def calc_valor_venal_total
+    self.valor_venal_total = self.valor_venal_terreno + self.valor_venal_construcao if self.valor_venal_terreno.present? and self.valor_venal_construcao.present?
+  end
+
+  def calc_imposto
+    self.valor_imposto = self.valor_venal_total * (self.aliquota / 100) if self.valor_venal_total.present? and self.aliquota.present?
+  end
 end

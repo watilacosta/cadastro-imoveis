@@ -1,0 +1,5 @@
+:plain
+  var modal = $("#modal-window")
+  modal.find(".modal-body").html("#{j (render file: 'imoveis/edit.html.haml')}");
+  modal.find('.modal-title').html("Atualizando Imóvel");
+  modal.modal();

@@ -24,7 +24,7 @@ puts 'Criando usuários faker'
 50.times do
   Proprietario.create!(
     email:    Faker::Internet.email,
-    password: Faker::Internet.password(min_length: 6),
+    password: '123456',
     nome:     Faker::Name.name,
     endereco: Faker::Address.full_address,
     role:     :normal
@@ -35,10 +35,18 @@ puts "#{Proprietario.all.count - 1} usuários faker criados com sucesso!"
 
 # ====================================CRIANDO IMOVEIS DOS PROPRIETARIOS======================================
 
-# puts 'Criando imóveis'
-# 100.times do 
-#   # Imovel.create!(
-
-#   # )
-# end
-# puts 'Imóveis criados com sucesso!'
+puts 'Criando imóveis'
+1000.times do 
+  Imovel.create!(
+    proprietario_id:        Proprietario.all.sample.id,
+    endereco:               Faker::Address.full_address,
+    area_terreno:           Faker::Number.number(digits: 4),   
+    area_construida:        Faker::Number.number(digits: 4),
+    aliquota:               Faker::Number.decimal(l_digits: 2),
+    valor_venal_terreno:    Faker::Number.decimal(l_digits: 3, r_digits: 3),
+    valor_venal_construcao: Faker::Number.decimal(l_digits: 3, r_digits: 3),
+    aliquota_aplicada:      Faker::Number.decimal(l_digits: 2),
+  )
+  puts "Imóvel #{Imovel.last.id} criado com sucesso"
+end
+puts 'Imóveis criados com sucesso!'

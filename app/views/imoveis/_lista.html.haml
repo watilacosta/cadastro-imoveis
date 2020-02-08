@@ -1,10 +1,42 @@
 .table-responsive
-  %table.table-striped.table-hover.table.bordered
+  %table.table-striped.table-bordered.table-hover.table-sm.w-100
+    %caption Tabela de Imóveis
     %thead
-      %tr
+      %tr.text-center
+        %th #
         %th Proprietário
-    
+        %th Endereço
+        %th Área Terreno
+        %th Área Construída
+        %th Alíquota
+        %th Valor Venal Terreno
+        %th Valor Venal Construção
+        %th Alíquota Aplicada
+        %th.table-info Área Total
+        %th.table-primary Valor Venal Total
+        %th.table-warning Valor Imposto
+        %th 
+          %i.fas.fa-cogs{title: 'Edição'}
     %tbody
       - @imoveis.each_with_index do |imovel, index|
-        %tr
-          %td= link_to 'Proprietário', proprietario_path(imovel.proprietario), class: 'btn btn-link'
+        %tr.text-center.text-monospace
+          %td=index+1
+          %td.text-left= link_to "#{imovel.proprietario.nome}", proprietario_path(imovel.proprietario), class: 'text-decoration-none', title: 'Clique para ver o proprietário'
+          %td.small=imovel.endereco.truncate(25)
+          %td=imovel.area_terreno
+          %td=imovel.area_construida
+          %td=number_to_percentage(imovel.aliquota, precision: 2)
+          %td=number_to_currency(imovel.valor_venal_terreno)
+          %td=number_to_currency(imovel.valor_venal_construcao)
+          %td=number_to_percentage(imovel.aliquota_aplicada, precision: 2)
+          %td.table-info=imovel.area_total
+          %td.table-primary=number_to_currency(imovel.valor_venal_total)
+          %td.table-warning=number_to_currency(imovel.valor_imposto)
+          %td
+            - if can? :crud, imovel
+              = link_to edit_imovel_path(imovel), remote: true, class: 'btn btn-outline-dark btn-sm', title: 'Editar' do
+                %i.fas.fa-edit
+              = link_to imovel_path(imovel), method: :delete, data: {confirm: "Apagar Imóvel #{index + 1} ?"}, class: 'btn btn-outline-dark btn-sm mx-1', title: 'Apagar' do
+                %i.fas.fa-trash
+            - else 
+              %i.fas.fa-exclamation-circle{title: 'Não autorizado'}

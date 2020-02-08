@@ -1,3 +1,4 @@
+= render 'layouts/flash_message'
 = simple_form_for @imovel, remote: true do |f|
   .form-row
     .col
@@ -7,30 +8,40 @@
 
   .form-row
     .col
-      = f.input :area_terreno, label: 'Área do Terreno', required: true, placeholder: 'm²', input_html: { step: 0.1 }
+      = f.input :area_terreno, label: 'Área do Terreno', required: true, input_html: { step: 0.0, value: @imovel.area_terreno }, hint: 'Em m²', placeholder: '0.0'
     .col 
-      = f.input :area_construida, label: 'Área Construída', required: true, placeholder: 'm²', input_html: { step: 0.1 }
-    .col
-      = f.input :area_total, as: :hidden, input_html: { value: 0.0 }
-      %label.mt-4.ml-2{for: 'area_total'} Área Total:
-      %span#area_total.font-weight-bold 0
+      = f.input :area_construida, label: 'Área Construída', required: true, input_html: { step: 0.0, value: @imovel.area_construida }, hint: 'Em m²', placeholder: '0.0'
 
   .form-row
     .col
-      = f.input :aliquota, label: 'Alíquota', required: true, input_html: { value: 0.00 }, hint: 'Valor em %'
+      = f.input :valor_venal_terreno, required: true, hint: 'Valor em R$', placeholder: '0.0', input_html: { step: 0.0, value: @imovel.valor_venal_terreno }
     .col
-      = f.input :valor_venal_terreno, required: true, input_html: { value: 0.0 }, hint: 'Valor em R$'
-    .col 
-      = f.input :valor_venal_construcao, required: true, input_html: { value: 0.0 }, hint: 'Valor em R$'
-      
-  .form-group
-    = f.input :valor_venal_total, as: :hidden, input_html: { value: 0.0 }
-    %label.mt-4.ml-2{for: 'vlr_venal_total'} Valor Venal Total:
-    %span#vlr_venal_total.font-weight-bold 0
-
+      = f.input :valor_venal_construcao, required: true, hint: 'Valor em R$', placeholder: '0.0', input_html: { step: 0.0, value: @imovel.valor_venal_construcao } 
+ 
   .form-row
     .col
-      = f.input :aliquota_aplicada, required: true, input_html: { value: 0.00 }, hint: 'Valor em %'
+      = f.input :aliquota, label: 'Alíquota', required: true, hint: 'Valor em %', placeholder: '0.0', input_html: { step: 0.0, value: @imovel.aliquota }
     .col
-      = f.input :valor_imposto, required: true, input_html: { value: 0.0 }, hint: 'Valor em R$'
+      = f.input :aliquota_aplicada, required: true, hint: 'Valor em %', placeholder: '0.0', input_html: { step: 0.0, value: @imovel.aliquota_aplicada }
   
+  - unless @imovel.new_record?
+    %hr
+    %h5.my-4 Valores Totais
+
+    .form-row 
+      .col
+        = f.input :valor_imposto, input_html: { step: 0.0, value: @imovel.valor_imposto }, readonly: true
+      .col
+        = f.input :valor_venal_total, input_html: { value: @imovel.valor_venal_total }, readonly: true
+      .col
+        = f.input :area_total, input_html: { value: @imovel.area_total }, readonly: true
+
+      
+  .d-flex.justify-content-end
+    %button.btn.btn-dark.mr-1{"data-dismiss" => "modal", :type => "button"} 
+      %i.fas.fa-times
+      Cancelar
+
+    %button.btn.btn-primary.mr-1{type: 'submit', id: 'btn_submit_imovel'}
+      %i.fas.fa-plus
+      Salvar

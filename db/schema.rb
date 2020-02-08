@@ -18,15 +18,15 @@ ActiveRecord::Schema.define(version: 2020_02_05_214336) do
   create_table "imoveis", force: :cascade do |t|
     t.bigint "proprietario_id"
     t.string "endereco"
-    t.decimal "area_terreno", precision: 7, scale: 2
-    t.decimal "area_construida", precision: 7, scale: 2
-    t.decimal "area_total", precision: 7, scale: 2
-    t.decimal "aliquota", precision: 7, scale: 2
-    t.decimal "valor_venal_terreno", precision: 7, scale: 2
-    t.decimal "valor_venal_construcao", precision: 7, scale: 2
-    t.decimal "valor_venal_total", precision: 7, scale: 2
-    t.decimal "aliquota_aplicada", precision: 7, scale: 2
-    t.decimal "valor_imposto", precision: 7, scale: 2
+    t.decimal "area_terreno"
+    t.decimal "area_construida"
+    t.decimal "area_total"
+    t.decimal "aliquota"
+    t.decimal "valor_venal_terreno"
+    t.decimal "valor_venal_construcao"
+    t.decimal "valor_venal_total"
+    t.decimal "aliquota_aplicada"
+    t.decimal "valor_imposto"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["proprietario_id"], name: "index_imoveis_on_proprietario_id"

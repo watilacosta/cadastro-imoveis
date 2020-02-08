@@ -1,14 +1,11 @@
-%h1 Lista de Imóveis
-%hr
-  .card
-    .card-header.d-flex.justify-content-between.align-items-center
-      Tabela de Imóveis Cadastrados
-      = link_to new_imovel_path, remote: true, class: 'btn btn-outline-primary', title: 'Novo imóvel' do
-        %i.fas.fa-plus
-        Novo
-    .card-body
-      - if @imoveis.present?
-        = render 'imoveis/lista'
-      - else
-        %p.text-muted Nenhum imóvel cadastrado no momento
-
+.card
+  .card-header.d-flex.justify-content-between.align-items-center
+    %h2 Lista de Imóveis
+    = link_to new_imovel_path, remote: true, class: 'btn btn-primary', title: 'Novo imóvel' do
+      %i.fas.fa-plus
+      Novo
+  .card-body
+    - if @imoveis.present?  
+      = render 'imoveis/lista'
+    - else
+      %p.text-muted Nenhum imóvel cadastrado no momento
