@@ -1,0 +1,26 @@
+= render 'layouts/flash_message'
+= simple_form_for @proprietario, remote: true do |f|
+  .form-row
+    .col
+      = f.input :nome, placeholder: 'Nome completo'
+    .col
+      = f.input :email, placeholder: 'Email'
+  .form-group
+    = f.input :endereco, placeholder: 'Formato: Rua x, nº xxxxx'
+  .form-row
+    .col
+      = f.input :password, placeholder: '*******'
+    .col
+      = f.input :password_confirmation, placeholder: '*******'
+  - if can? :manage, @proprietario
+    .form-group
+      = f.input :role, as: :radio_buttons, collection: [['0', 'admin'], ['1', 'normal']], label_method: :second, value_method: :second
+    
+  .d-flex.justify-content-end
+    %button.btn.btn-dark.mr-1{"data-dismiss" => "modal", :type => "button"} 
+      %i.fas.fa-times
+      Cancelar
+
+    %button.btn.btn-primary.mr-1{type: 'submit', id: 'btn_submit_imovel'}
+      %i.fas.fa-plus
+      Salvar

@@ -10,6 +10,7 @@ class Ability
       can :manage, :all
     else
       can :crud, Imovel, proprietario_id: proprietario.id
+      can :crud, Proprietario, id: proprietario.id
     end
   end
 end

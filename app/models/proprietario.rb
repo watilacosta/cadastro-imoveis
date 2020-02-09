@@ -17,13 +17,14 @@
 class Proprietario < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable,
          :recoverable, :rememberable, :validatable
 
-  validates :nome, length: { maximum: 100 }
-  validates :endereco, length: { maximum: 250 }
+  validates :nome, length: { maximum: 100 }, presence: true
+  validates :endereco, length: { maximum: 250 }, presence: true
+  validates :role, presence: true
 
-  has_many :imoveis
+  has_many :imoveis, dependent: :destroy
 
   enum role: [:admin, :normal]
 end
