@@ -65,3 +65,4 @@ gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'mast
 gem 'kaminari'
 gem 'jquery-rails'
 gem 'bootstrap', '~> 4.4.1'
+gem 'font-awesome-sass', '~> 5.12.0'
