@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   get 'proprietario/show'
   root 'home#index'
-  devise_for :proprietarios, skip: :registrations
-  
+  devise_for :proprietarios
   resources :imoveis
   resources :proprietarios
 

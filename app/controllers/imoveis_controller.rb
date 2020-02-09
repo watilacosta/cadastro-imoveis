@@ -1,5 +1,4 @@
 class ImoveisController < ApplicationController
-  before_action :authenticate_proprietario!
   before_action :set_imovel, only: [:edit, :update, :destroy]
 
   def index

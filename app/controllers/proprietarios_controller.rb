@@ -1,5 +1,4 @@
 class ProprietariosController < ApplicationController
-  before_action :authenticate_proprietario!
   before_action :set_proprietario, only: [:show, :edit, :update, :destroy]
 
   def index
