@@ -1,24 +1,9 @@
-# README
+# TESTE INTERSOL
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[Link do projeto no heroku]
+(https://cadastro-imoveis.herokuapp.com/proprietarios/sign_in)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+==============================================================
+Credenciais:
+  email: teste@email.com
+  password: 123456
